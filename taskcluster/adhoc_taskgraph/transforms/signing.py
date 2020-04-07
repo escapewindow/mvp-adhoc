@@ -9,9 +9,6 @@ from __future__ import absolute_import, print_function, unicode_literals
 
 from taskgraph.transforms.base import TransformSequence
 from taskgraph.util.schema import resolve_keyed_by
-from taskgraph.util.keyed_by import evaluate_keyed_by
-
-from ..signing_manifest import get_manifest
 
 
 transforms = TransformSequence()
@@ -43,7 +40,6 @@ def define_signing_flags(config, tasks):
 
 @transforms.add
 def build_signing_task(config, tasks):
-    all_manifests = get_manifest()
     for task in tasks:
         dep = task["primary-dependency"]
         task["dependencies"] = {"fetch": dep.label}
@@ -54,12 +50,12 @@ def build_signing_task(config, tasks):
                 "queue:get-artifact:{}/*".format(artifact_prefix)
             )
         manifest_name = dep.label.replace("fetch-", "")
-        manifest = all_manifests[manifest_name]
+        manifest = dep.attributes['manifest']
         task["worker"]["upstream-artifacts"] = [
             {
                 "taskId": {"task-reference": "<fetch>"},
                 "taskType": "build",
-                "paths": ["{}/{}".format(artifact_prefix, manifest["artifact-name"])],
+                "paths": [dep.attributes['fetch-artifact']],
                 "formats": manifest["signing-formats"],
             }
         ]

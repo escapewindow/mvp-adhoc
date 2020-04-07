@@ -26,4 +26,5 @@ def from_manifests(config, jobs):
         for k in ("gpg-signature", "artifact-name"):
             if manifest.get(k):
                 fetch[k] = manifest[k]
+        job.setdefault('attributes', {})['manifest'] = manifest
         yield job

@@ -9,6 +9,7 @@ from six import text_type
 from voluptuous import Required
 
 from taskgraph.util.schema import taskref_or_string
+from taskgraph.util import path as mozpath
 from taskgraph.transforms.task import payload_builder
 
 
@@ -46,6 +47,15 @@ def build_scriptworker_signing_payload(config, task, task_def):
     formats = set()
     for artifacts in worker["upstream-artifacts"]:
         formats.update(artifacts["formats"])
+        for path in artifacts['paths']:
+            if not path.startswith('public/'):
+                # Use taskcluster-proxy and request appropriate scope.  For example, add
+                # 'scopes: [queue:get-artifact:path/to/*]' for 'path/to/artifact.tar.xz'.
+                task_def['taskcluster-proxy'] = True
+                dirname = mozpath.dirname(path)
+                scope = 'queue:get-artifact:{}/*'.format(dirname)
+                if scope not in task_def.setdefault('scopes', []):
+                    task_def['scopes'].append(scope)
 
     scope_prefix = config.graph_config["scriptworker"]["scope-prefix"]
     task_def["scopes"].append(
