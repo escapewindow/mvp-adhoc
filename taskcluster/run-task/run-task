@@ -800,7 +800,7 @@ def main(args):
 
     parser.add_argument('--fetch-hgfingerprint', action='store_true',
                         help='Fetch the latest hgfingerprint from the secrets store, '
-                        'using the taskclsuerProxy')
+                        'using the taskclusterProxy')
 
     args = parser.parse_args(our_args)
 
