@@ -7,17 +7,19 @@ taskgraph:
     register: adhoc_taskgraph:register
     repositories:
         # This is the manifest repo
-        adhoc:
-            # string: the name of the repo, for humans
+        adhoc-manifest:
             name: "Adhoc manifest"
-            # regex: to match the base name of the repo
-            project-regex: adhoc-manifest
-            # string: the repo url. Use `git@github.com:org/repo` for private
-            #         repositories.
-            default-repository: https://github.com/mozilla-extensions/adhoc-manifest
-            # string: which branch is primary; should be `master`
+            project-regex: adhoc-manifest$
+            default-repository: https://github.com/mozilla-services/adhoc-manifest
             default-ref: master
-            # enum: hg or git; should be `git`
+            ssh-secret-name: project/adhoc/adhoc-github-clone-ssh
+            type: git
+        adhoc-stage:
+            # string: the name of the repo, for humans
+            name: "Adhoc Stage"
+            project-regex: mvp-adhoc$
+            default-repository: https://github.com/mozilla-releng/mvp-adhoc
+            default-ref: master
             type: git
     cached-task-prefix: adhoc
 
@@ -37,7 +39,7 @@ workers:
             provisioner: scriptworker-k8s
             implementation: scriptworker-signing
             os: scriptworker
-            worker-type: adhoc-t-signing-dev
+            worker-type: adhoc-t-signing
         signing:
             provisioner: scriptworker-k8s
             implementation: scriptworker-signing
@@ -45,9 +47,8 @@ workers:
             worker-type:
                 by-level:
                     "3": adhoc-3-signing
-                    default: adhoc-t-signing-dev
+                    default: adhoc-t-signing
 
-github_clone_secret: project/adhoc/adhoc-github-clone-ssh
 
 scriptworker:
     scope-prefix: project:adhoc:releng
