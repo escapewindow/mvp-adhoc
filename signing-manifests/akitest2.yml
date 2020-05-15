@@ -1,0 +1,12 @@
+---
+# This schema will likely change over time
+url: https://raw.githubusercontent.com/mozilla-releng/mvp-adhoc/0f7271cf1de0ef9e03dbf7d74c134f82fbd02b37/test.log
+artifact-name: test.log
+bug: 1594621
+signing-product: firefox
+signing-cert-level: dep
+signing-formats: ["autograph_gpg"]  # We may need to explicitly say firefox-release-gpg ?
+sha256: dcf1715377efc16ee367ff474c476943b2a2dbb255989551f9f77e8a59bf29ca
+filesize: 28
+requestor: Aki Sasaki <asasaki@mozilla.com>
+reason: test
