@@ -39,7 +39,7 @@ workers:
             provisioner: scriptworker-k8s
             implementation: scriptworker-signing
             os: scriptworker
-            worker-type: adhoc-t-signing
+            worker-type: adhoc-t-signing-dev
         signing:
             provisioner: scriptworker-k8s
             implementation: scriptworker-signing
@@ -47,8 +47,7 @@ workers:
             worker-type:
                 by-level:
                     "3": adhoc-3-signing
-                    default: adhoc-t-signing
-
+                    default: adhoc-t-signing-dev
 
 scriptworker:
     scope-prefix: project:adhoc:releng
