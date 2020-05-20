@@ -48,6 +48,22 @@ workers:
                 by-level:
                     "3": adhoc-3-signing
                     default: adhoc-t-signing-dev
+        shipit:
+            provisioner: scriptworker-k8s
+            implementation: scriptworker-shipit
+            os: scriptworker
+            worker-type:
+                by-level:
+                    "3": adhoc-3-shipit
+                    default: adhoc-t-shipit
+
+notify:
+    email:
+        - aki+mvp-adhoc@mozilla.com
+
+release-promotion:
+    flavors:
+        - promote
 
 scriptworker:
     scope-prefix: project:adhoc:releng
