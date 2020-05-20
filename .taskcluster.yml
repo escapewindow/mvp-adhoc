@@ -2,12 +2,12 @@
 version: 1
 reporting: checks-v1
 policy:
-    pullRequests: public
+    pullRequests: collaborators
 tasks:
     - $let:
           taskgraph:
-              branch: taskgraph-try
-              revision: e5490eee86e2148c93dbd9505e7c77b86d093e9d
+              branch: taskgraph
+              revision: cab4565345d0d0effa66f18fe91335dd6d744031
           trustDomain: adhoc
       in:
           $if: 'tasks_for in ["github-pull-request", "github-push", "action", "cron"]'
@@ -199,9 +199,7 @@ tasks:
                               chainOfTrust: true
                           # Note: This task is built server side without the context or tooling that
                           # exist in tree so we must hard code the hash
-                          image:
-                              mozillareleases/taskgraph:decision-bd477b55732fc5f5d55a78e6162355af8bc81805b415a9ea8dbe42c020f840db
-
+                          image: mozillareleases/taskgraph:decision-21bef1bc0f11e62c7a23384584f9f8f0d96e95eef192e5bb599fc82ba55c81a7@sha256:d29af306b09cd00a63f982e8caeb53dbec7efd7bb3ae64ce3cef9cd889b750e6
                           maxRunTime: 1800
 
                           command:

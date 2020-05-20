@@ -10,7 +10,7 @@ taskgraph:
         adhoc-manifest:
             name: "Adhoc manifest"
             project-regex: adhoc-manifest$
-            default-repository: https://github.com/mozilla-services/adhoc-manifest
+            default-repository: https://github.com/mozilla-releng/adhoc-manifest
             default-ref: master
             ssh-secret-name: project/adhoc/adhoc-github-clone-ssh
             type: git
