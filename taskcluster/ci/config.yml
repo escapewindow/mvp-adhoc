@@ -63,7 +63,7 @@ notify:
 
 release-promotion:
     flavors:
-        - promote
+        promote: {}
 
 scriptworker:
     scope-prefix: project:adhoc:releng
