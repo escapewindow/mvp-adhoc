@@ -15,6 +15,7 @@ def register(graph_config):
     _import_modules([
         "routes",
         "parameters",
+        "release_promotion",
         "signing_manifest",
         "worker_types",
     ])
