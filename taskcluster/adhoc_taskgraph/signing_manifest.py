@@ -42,7 +42,7 @@ base_schema = Schema(
         # XXX flesh out these enums
         Optional("signing-product"): Any("firefox", "fenix", "fennec", "thunderbird", "xpi", "mpd001"),
         Optional("signing-cert-level"): Any("dep", "nightly", "release"),
-        Required("signing-formats"): [Any(SUPPORTED_SIGNING_FORMATS)],
+        Required("signing-formats"): [Any(*SUPPORTED_SIGNING_FORMATS)],
         Required("sha256"): text_type,
         Required("filesize"): int,
         Required("requestor"): basestring,
