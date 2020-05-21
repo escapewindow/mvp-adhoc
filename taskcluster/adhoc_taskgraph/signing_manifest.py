@@ -27,15 +27,22 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 ROOT = os.path.join(BASE_DIR, "taskcluster", "ci")
 MANIFEST_DIR = os.path.join(BASE_DIR, "signing-manifests")
 
+SUPPORTED_SIGNING_FORMATS = (
+    "autograph_gpg",
+    "autograph_authenticode",
+    "autograph_authenticode_stub",
+    "autograph_hash_only_mar384",
+)
+
 
 base_schema = Schema(
     {
         Required("url"): text_type,
         Required("bug"): int,
         # XXX flesh out these enums
-        Required("signing-product"): Any("firefox", "fenix", "fennec", "thunderbird", "xpi", "mpd001"),
-        Required("signing-cert-level"): Any("dep", "nightly", "release"),
-        Required("signing-formats"): [Any("autograph_gpg", "autograph_authenticode", "autograph_authenticode_stub")],
+        Optional("signing-product"): Any("firefox", "fenix", "fennec", "thunderbird", "xpi", "mpd001"),
+        Optional("signing-cert-level"): Any("dep", "nightly", "release"),
+        Required("signing-formats"): [Any(SUPPORTED_SIGNING_FORMATS)],
         Required("sha256"): text_type,
         Required("filesize"): int,
         Required("requestor"): basestring,
