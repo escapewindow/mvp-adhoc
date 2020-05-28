@@ -39,7 +39,7 @@ workers:
             provisioner: scriptworker-k8s
             implementation: scriptworker-signing
             os: scriptworker
-            worker-type: adhoc-t-signing-dev
+            worker-type: adhoc-t-signing
         signing:
             provisioner: scriptworker-k8s
             implementation: scriptworker-signing
@@ -47,7 +47,7 @@ workers:
             worker-type:
                 by-level:
                     "3": adhoc-3-signing
-                    default: adhoc-t-signing-dev
+                    default: adhoc-t-signing
         shipit:
             provisioner: scriptworker-k8s
             implementation: scriptworker-shipit
