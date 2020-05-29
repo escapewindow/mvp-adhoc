@@ -9,6 +9,7 @@ kind-dependencies:
     - fetch
 
 transforms:
+    - adhoc_taskgraph.transforms.release_notifications:transforms
     - adhoc_taskgraph.transforms.signing:transforms
     - taskgraph.transforms.task:transforms
 
@@ -29,3 +30,6 @@ job-template:
                 '3': release-signing
                 default: dep-signing
         max-run-time: 3600
+    notifications:
+        subject: "TODO adhoc release signing task"
+        message: "TODO adhoc release signing task"
