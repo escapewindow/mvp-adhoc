@@ -17,6 +17,7 @@ def register(graph_config):
         "parameters",
         "release_promotion",
         "signing_manifest",
+        "target",
         "worker_types",
     ])
 

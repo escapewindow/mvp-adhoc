@@ -63,7 +63,8 @@ notify:
 
 release-promotion:
     flavors:
-        promote: {}
+        promote:
+            target-tasks-method: promote_adhoc
 
 scriptworker:
     scope-prefix: project:adhoc:releng
