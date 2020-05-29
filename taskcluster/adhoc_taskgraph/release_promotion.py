@@ -93,6 +93,11 @@ def is_release_promotion_available(parameters):
                     'type': 'string',
                 },
             },
+            'version': {
+                'type': 'string',
+                'description': ('The expected version to promote.'),
+                'default': '',
+            },
         },
         "required": ['release_promotion_flavor', 'adhoc_name', 'build_number'],
     }
@@ -142,6 +147,9 @@ def release_promotion_action(parameters, graph_config, input, task_group_id, tas
     #    a trusted branch. this will require an oauth token
     parameters['adhoc_revision'] = input.get('revision', 'master')
     parameters['shipping_phase'] = input['release_promotion_flavor']
+
+    if input.get('version'):
+        parameters['version'] = input['version']
 
     # make parameters read-only
     parameters = Parameters(**parameters)

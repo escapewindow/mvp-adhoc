@@ -58,3 +58,17 @@ def build_scriptworker_signing_payload(config, task, task_def):
     task_def["scopes"].append(
         "{}:signing:cert:{}".format(scope_prefix, worker["signing-type"])
     )
+
+
+@payload_builder(
+    "shipit-shipped",
+    schema={
+        Required("release-name"): text_type,
+    },
+)
+def build_push_apk_payload(config, task, task_def):
+    worker = task["worker"]
+
+    task_def["payload"] = {
+        "release_name": worker['release-name'],
+    }
