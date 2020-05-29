@@ -40,8 +40,7 @@ base_schema = Schema(
         Required("url"): text_type,
         Required("bug"): int,
         # XXX flesh out these enums
-        Optional("signing-product"): Any("firefox", "fenix", "fennec", "thunderbird", "xpi", "mpd001"),
-        Optional("signing-cert-level"): Any("dep", "nightly", "release"),
+        Required("private-artifact"): bool,
         Required("signing-formats"): [Any(*SUPPORTED_SIGNING_FORMATS)],
         Required("sha256"): text_type,
         Required("filesize"): int,

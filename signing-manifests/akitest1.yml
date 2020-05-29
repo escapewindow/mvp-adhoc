@@ -1,11 +1,9 @@
 ---
-# This schema will likely change over time
 url: https://raw.githubusercontent.com/mozilla-releng/mvp-adhoc/2482dacbf2dc53b005dc9e1bba60864c73b90cc1/README.md
 artifact-name: README.md
 bug: 1594621
-signing-product: firefox
-signing-cert-level: dep
-signing-formats: ["autograph_gpg"]  # We may need to explicitly say firefox-release-gpg ?
+private-artifact: false
+signing-formats: ["autograph_gpg"]
 sha256: a01721d04235c00b74baecaf18dbed80be90e367058f8fa734122fb45d61faba
 filesize: 26
 requestor: Aki Sasaki <asasaki@mozilla.com>

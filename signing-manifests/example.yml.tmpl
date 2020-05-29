@@ -1,11 +1,9 @@
 ---
-# This schema will likely change over time
 url: https://evil.com/foo/bar.exe
 artifact-name: bar.exe
 bug: 12345
-signing-product: firefox
-signing-cert-level: dep
-signing-formats: ["autograph_gpg"]  # We may need to explicitly say firefox-release-gpg ?
+private-artifact: false
+signing-formats: ["autograph_gpg"]
 sha256: abcd12345
 filesize: 12345
 requestor: Dr. Pepper
