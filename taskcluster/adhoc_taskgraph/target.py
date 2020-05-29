@@ -13,6 +13,10 @@ def target_tasks_promote_xpi(full_task_graph, parameters, graph_config):
     """Select the set of tasks required for promoting adhoc signing."""
 
     def filter(task, parameters):
-        return task.attributes.get('shipping-phase') in ('build', 'promote')
+        if task.attributes.get('shipping-phase') not in ('build', 'promote'):
+            return False
+        manifest_name = task.attributes.get('manifest', {}).get('manifest_name')
+        if manifest_name and manifest_name == parameters["adhoc_name"]:
+            return True
 
     return [l for l, t in full_task_graph.tasks.iteritems() if filter(t, parameters)]
