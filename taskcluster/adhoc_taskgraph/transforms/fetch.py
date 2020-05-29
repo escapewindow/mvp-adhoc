@@ -27,4 +27,8 @@ def from_manifests(config, jobs):
             if manifest.get(k):
                 fetch[k] = manifest[k]
         job.setdefault('attributes', {})['manifest'] = manifest
+        if manifest["private-artifact"]:
+            job["artifact-prefix"] = config.graph_config["private-artifact-prefix"]
+        else:
+            job["artifact-prefix"] = "public/build"
         yield job

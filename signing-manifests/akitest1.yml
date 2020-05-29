@@ -2,7 +2,7 @@
 url: https://raw.githubusercontent.com/mozilla-releng/mvp-adhoc/2482dacbf2dc53b005dc9e1bba60864c73b90cc1/README.md
 artifact-name: README.md
 bug: 1594621
-private-artifact: false
+private-artifact: true
 signing-formats: ["autograph_gpg"]
 sha256: a01721d04235c00b74baecaf18dbed80be90e367058f8fa734122fb45d61faba
 filesize: 26

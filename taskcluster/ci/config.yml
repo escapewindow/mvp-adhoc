@@ -67,5 +67,7 @@ release-promotion:
         promote:
             target-tasks-method: promote_adhoc
 
+private-artifact-prefix: releng/adhoc
+
 scriptworker:
     scope-prefix: project:adhoc:releng
