@@ -23,7 +23,7 @@ def add_notifications(config, jobs):
 
     for job in jobs:
         if "primary-dependency" in job:
-            dep = job.pop("primary-dependency")
+            dep = job["primary-dependency"]
             attributes = dep.attributes.copy()
             if job.get("attributes"):
                 attributes.update(job["attributes"])
@@ -31,12 +31,13 @@ def add_notifications(config, jobs):
             job.setdefault("dependencies", {}).update({"signing": dep.label})
         if job.get("attributes", {}).get("shipping-phase") != shipping_phase:
             continue
-        job['label'] = '{}-{}'.format(config.kind, shipping_phase)
 
         emails = config.graph_config['notify']['email']
         format_kwargs = dict(
             config=config.__dict__,
+            label=job["label"],
         )
+        notifications = job.pop('notifications')
         subject = notifications['subject'].format(**format_kwargs)
         message = notifications['message'].format(**format_kwargs)
 

@@ -60,6 +60,7 @@ workers:
 notify:
     email:
         - aki+mvp-adhoc@mozilla.com
+    prefix: "[adhoc-stage]"
 
 release-promotion:
     flavors:

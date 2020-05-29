@@ -59,6 +59,7 @@ def build_signing_task(config, tasks):
                 "formats": manifest["signing-formats"],
             }
         ]
+        task.setdefault("label", "{}-{}".format(config.kind, manifest_name))
         task.setdefault("extra", {})["manifest-name"] = manifest_name
         del task["primary-dependency"]
         yield task
